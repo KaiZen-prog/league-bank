@@ -6,10 +6,10 @@ const Converter = () => {
       <h2 className="promo__header">Конвертер валют</h2>
       <form method="post" action="#" className="converter__form">
         <div className="converter__field">
-          <label htmlFor="converter__input">
+          <label htmlFor="currency-input">
             <h3 className="converter__field-title">У меня есть</h3>
           </label>
-          <input id="converter__input" className="converter__input" type="number" name="currencyInput" placeholder="0"/>
+          <input id="currency-input" className="converter__input" type="number" name="currencyInput" placeholder="0"/>
 
           <label className="converter__select-wrapper">
             <span></span>
@@ -24,10 +24,10 @@ const Converter = () => {
         </div>
 
         <div className="converter__field">
-          <label htmlFor="converter__input">
+          <label htmlFor="currency-output">
             <h3 className="converter__field-title">Хочу приобрести</h3>
           </label>
-          <input id="converter__input" className="converter__input" type="number" name="currencyOutput" placeholder="0"/>
+          <input id="currency-output" className="converter__input" type="number" name="currencyOutput" placeholder="0"/>
 
           <label className="converter__select-wrapper">
             <span></span>
