@@ -3,27 +3,24 @@ import React from 'react';
 const Header = () => {
   return (
     <header className="header">
-      <a className="header__logo" href="#">
-        <img className="header__img" src="/img/logo.svg" width="190" height="38" alt="Лига Банк"/>
-        ЛИГА Банк
-      </a>
+      <a className="header__logo" href="#">ЛИГА Банк</a>
 
       <nav className="header__nav">
         <ul className="header__nav-list">
           <li className="header__nav-item">
-            Услуги
+            <a className="header__nav-link" href="#">Услуги</a>
           </li>
           <li className="header__nav-item">
-            Рассчитать кредит
-          </li>
-          <li className="header__nav-item header__nav-item--current">
-            Конвертер валют
+            <a className="header__nav-link" href="#">Рассчитать кредит</a>
           </li>
           <li className="header__nav-item">
-            Контакты
+            <a className="header__nav-link header__nav-link--current" href="#">Конвертер валют</a>
           </li>
           <li className="header__nav-item">
-            Задать вопрос
+            <a className="header__nav-link" href="#">Контакты</a>
+          </li>
+          <li className="header__nav-item">
+            <a className="header__nav-link" href="#">Задать вопрос</a>
           </li>
         </ul>
       </nav>
