@@ -9,7 +9,7 @@
   margin: 0 auto;
   padding-left: 98px;
 
-  background-color: $background-color-grey;
+  background-color: $color-white;
 }
 
 .header__logo {
@@ -19,7 +19,7 @@
 
   font-weight: 700;
   font-size: 20px;
-  color: $text-color-dark-blue;
+  color: $color-dark-blue;
 
   line-height: 91px;
   letter-spacing: 1.3px;
@@ -53,9 +53,9 @@
   text-align: center;
 
   line-height: 18.75px;
-  color: $text-color-dark-blue;
+  color: $color-dark-blue;
 
-  padding: 37px 12.5px 36px 12.5px;
+  padding: 37px 12.5px 35px 12.5px;
 
   &--current {
     color: $color-blue;
@@ -67,10 +67,10 @@
   position: relative;
 
   text-align: center;
-  color: $text-color-dark-blue;
+  color: $color-dark-blue;
 
   margin-left: 139px;
-  padding: 37px 12px 36px 30px;
+  padding: 37px 12px 35px 30px;
 
   &::before {
     content: "";
