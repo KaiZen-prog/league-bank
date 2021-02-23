@@ -1,7 +1,7 @@
 .converter {
   width: $page-container-width;
 
-  margin: 0 auto 20px auto;
+  margin: 0 auto 100px auto;
   padding-top: 46px;
 }
 
@@ -176,20 +176,11 @@
 }
 
 .converter__button {
+  @include blue-button;
+
   width: 382px;
   height: 60px;
 
-  font-family: "Roboto", "Arial", sans-serif;
-  font-weight: 500;
   font-size: 18px;
   line-height: 140%;
-
-  text-align: center;
-
-  color: $color-white;
-
-  background: $color-blue;
-
-  border: none;
-  border-radius: 4px;
 }

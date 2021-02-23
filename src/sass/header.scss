@@ -1,4 +1,8 @@
 .header {
+  background-color: $color-white;
+}
+
+.header__wrapper {
   display: flex;
 
   width: $page-width;
@@ -8,8 +12,6 @@
 
   margin: 0 auto;
   padding-left: 98px;
-
-  background-color: $color-white;
 }
 
 .header__logo {

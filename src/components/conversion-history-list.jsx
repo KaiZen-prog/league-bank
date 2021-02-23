@@ -5,6 +5,15 @@ const ConversionHistoryList = () => {
   return (
     <ul className="conversion-history__list">
       <ConversionHistoryItem/>
+      <ConversionHistoryItem/>
+      <ConversionHistoryItem/>
+      <ConversionHistoryItem/>
+      <ConversionHistoryItem/>
+      <ConversionHistoryItem/>
+      <ConversionHistoryItem/>
+      <ConversionHistoryItem/>
+      <ConversionHistoryItem/>
+      <ConversionHistoryItem/>
     </ul>
   );
 };

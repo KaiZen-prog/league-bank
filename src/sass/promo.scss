@@ -1,54 +1,12 @@
 .promo {
-  position: relative;
-
-  width: $page-width;
-  height: 400px;
-
-  padding-left: 150px;
-
   background-color: $color-blue;
   background-image: linear-gradient(180.24deg, rgba(32, 39, 179, 0) 36.31%, #2027B3 99.79%);
-
-  &::before {
-    position: absolute;
-    content: "";
-
-    top: 131px;
-    left: 150px;
-
-    width: 150px;
-    height: 269px;
-
-    background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 66.3%, #3841FF 97.14%);
-    z-index: 1;
-  }
-
-  &::after {
-    position: absolute;
-    content: "";
-
-    top: 131px;
-    right: 299px;
-
-    width: 270px;
-    height: 269px;
-
-    background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 27.26%, #3841FF 97.14%);
-    z-index: 1;
-  }
 }
 
-.promo__wrapper {
+.promo__center {
   position: relative;
-  display: flex;
-  flex-direction: column;
-
-  width: 917px;
-
-  padding-top: 102px;
-  padding-left: 118px;
-
-  background-color: $color-blue;
+  width: $page-width;
+  margin: 0 auto;
 
   &::before {
     position: absolute;
@@ -59,7 +17,7 @@
     height: 228px;
 
     top: 61px;
-    right: -75px;
+    right: 224px;
 
     background-image: url("../img/white-card.png");
     background-repeat: no-repeat;
@@ -75,11 +33,52 @@
     height: 228px;
 
     top: 119px;
-    right: 14px;
+    right: 313px;
 
     background-image: url("../img/black-card.png");
     background-repeat: no-repeat;
     z-index: 3;
+  }
+}
+
+.promo__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  width: 917px;
+
+  margin: 0 298px 0 150px;
+
+  padding-top: 102px;
+  padding-left: 118px;
+
+  background-color: $color-blue;
+
+  &::before {
+    position: absolute;
+    content: "";
+
+    top: 131px;
+    left: 0;
+
+    width: 150px;
+    height: 269px;
+
+    background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 66.3%, #3841FF 97.14%);
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+
+    top: 131px;
+    right: 0;
+
+    width: 270px;
+    height: 269px;
+
+    background: linear-gradient(183.47deg, rgba(56, 65, 255, 0) 27.26%, #3841FF 97.14%);
   }
 }
 

@@ -1,0 +1,13 @@
+@mixin blue-button {
+  font-family: "Roboto", "Arial", sans-serif;
+  font-weight: 500;
+
+  text-align: center;
+
+  color: $color-white;
+
+  background: $color-blue;
+
+  border: none;
+  border-radius: 4px;
+}
