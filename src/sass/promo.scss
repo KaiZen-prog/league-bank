@@ -19,7 +19,7 @@
     top: 61px;
     right: 224px;
 
-    background-image: url("../img/white-card.png");
+    background-image: url("../img/card-white.png");
     background-repeat: no-repeat;
     z-index: 2;
   }
@@ -35,7 +35,7 @@
     top: 119px;
     right: 313px;
 
-    background-image: url("../img/black-card.png");
+    background-image: url("../img/card-black.png");
     background-repeat: no-repeat;
     z-index: 3;
   }
@@ -94,7 +94,7 @@
 }
 
 .promo__slogan {
-  color: $color-grey;
+  color: $color-light-grey;
 
   font-weight: 400;
   font-size: 22px;
