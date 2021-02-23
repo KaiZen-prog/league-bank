@@ -8,9 +8,7 @@
   width: $page-width;
 
   margin: 0 auto;
-  padding-top: 56px;
-  padding-left: 98px;
-  padding-bottom: 53px;
+  padding: 56px 83px 53px 98px;
 }
 
 .footer__company-info {
@@ -43,14 +41,11 @@
 }
 
 .footer__address {
-  font-size: 12px;
-  line-height: 17px;
-
-  color: $color-grey;
+  @include footer-text-grey;
 }
 
 .footer__nav {
-
+  margin-right: 70px;
 }
 
 .footer__nav-list {
@@ -68,4 +63,118 @@
   color: $color-dark-blue;
 
   margin-top: 9px;
+}
+
+.footer__phone-wrapper {
+  width: 209px;
+
+  padding-top: 2px;
+  padding-left: 39px;
+
+  &--first {
+    margin-right: 71px;
+  }
+}
+
+.footer__phone {
+  position: relative;
+  display: block;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+
+  color: $color-dark-blue;
+
+  margin-bottom: 1px;
+
+  &--mobile::before {
+    position: absolute;
+    content: "";
+    display: block;
+
+    top: 2px;
+    left: -28px;
+
+    width: 10px;
+    height: 16px;
+
+    background-image: url("../img/icon-phone-mobile.svg");
+    background-repeat: no-repeat;
+  }
+
+  &--stationary::before {
+    content: "";
+    position: absolute;
+    display: block;
+
+    top: 2px;
+    left: -32px;
+
+    width: 16px;
+    height: 16px;
+
+    background-image: url("../img/icon-phone.svg");
+    background-repeat: no-repeat;
+  }
+}
+
+.footer__phone-info {
+  @include footer-text-grey;
+}
+
+.footer__socials-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+
+  width: 117px;
+
+  margin-top: 0;
+  margin-bottom: auto;
+  margin-left: auto;
+  padding: 4px 0 0 0;
+}
+
+.footer__socials-link {
+  position: relative;
+  display: block;
+
+  width: 16px;
+  height: 16px;
+
+  margin: 0 15px 5px 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+
+  &--fb {
+    width: 9px;
+
+    &::before {
+      background-image: url("../img/icon-socials-facebook.svg");
+    }
+  }
+
+  &--instagram::before {
+    background-image: url("../img/icon-socials-instagram.svg");
+  }
+
+  &--twitter::before {
+    background-image: url("../img/icon-socials-twitter.svg");
+  }
+
+  &--youtube::before {
+    background-image: url("../img/icon-socials-youtube.svg");
+  }
 }

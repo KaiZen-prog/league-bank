@@ -20,7 +20,7 @@ const Footer = () => {
           </ul>
         </nav>
 
-        <div className="footer__phone-wrapper">
+        <div className="footer__phone-wrapper footer__phone-wrapper--first">
           <a className="footer__phone footer__phone--mobile" href="tel:*0904">*0904</a>
           <p className="footer__phone-info">Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2</p>
         </div>
@@ -37,7 +37,7 @@ const Footer = () => {
             </a>
           </li>
           <li className="footer__socials-item">
-            <a className="footer__socials-link footer__socials-link--inst" href="#">
+            <a className="footer__socials-link footer__socials-link--instagram" href="#">
               <span className="visually-hidden">Наш инстаграм</span>
             </a>
           </li>

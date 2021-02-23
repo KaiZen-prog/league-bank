@@ -23,3 +23,10 @@
   background-image: url("../img/logo.svg");
   background-repeat: no-repeat;
 }
+
+@mixin footer-text-grey {
+  font-size: 12px;
+  line-height: 17px;
+
+  color: $color-grey;
+}

@@ -70,13 +70,16 @@
   padding: 37px 12px 35px 30px;
 
   &::before {
-    content: "";
     position: absolute;
+    content: "";
     display: block;
-    width: 20px;
-    height: 22px;
+
     top: 34px;
     left: 0;
+
+    width: 20px;
+    height: 22px;
+
     background-image: url("../img/icon-login.svg");
     background-repeat: no-repeat;
   }
