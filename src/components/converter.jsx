@@ -24,10 +24,11 @@ const Converter = (props) => {
           />
 
           <label>
-            <select name="currencyInput"
-                    className="converter__select"
-                    value={currencyInput.type}
-                    onChange={typeChangeHandler}
+            <select
+              name="currencyInput"
+              className="converter__select"
+              value={currencyInput.type}
+              onChange={typeChangeHandler}
             >
               <option value="RUB">RUB</option>
               <option value="USD">USD</option>
@@ -54,10 +55,11 @@ const Converter = (props) => {
           />
 
           <label>
-            <select name="currencyOutput"
-                    className="converter__select"
-                    value={currencyOutput.type}
-                    onChange={typeChangeHandler}
+            <select
+              name="currencyOutput"
+              className="converter__select"
+              value={currencyOutput.type}
+              onChange={typeChangeHandler}
             >
               <option value="RUB">RUB</option>
               <option value="USD">USD</option>
