@@ -8,7 +8,7 @@ import rootReducer from "./store/reducers/root-reducer";
 import './sass/style.scss';
 import App from './components/app';
 import {createAPI} from './services/api';
-import {getExchangeRate} from './store/api-actions';
+import {loadExchangeRate} from './store/api-actions';
 
 const api = createAPI();
 
@@ -20,7 +20,7 @@ const store = createStore(
 );
 
 Promise.all([
-  store.dispatch(getExchangeRate(store.getState().CONVERTER.date)),
+  store.dispatch(loadExchangeRate(store.getState().CONVERTER.date)),
 ])
   .then(() => {
     ReactDOM.render(

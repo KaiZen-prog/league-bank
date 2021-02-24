@@ -18,7 +18,6 @@ const Converter = (props) => {
             className="converter__input"
             name="currencyInput"
             type="number"
-            min="0"
             placeholder="0"
             value={currencyInput.amount}
             onChange={valueChangeHandler}
@@ -49,7 +48,6 @@ const Converter = (props) => {
             className="converter__input"
             name="currencyOutput"
             type="number"
-            min="0"
             placeholder="0"
             value={currencyOutput.amount}
             onChange={valueChangeHandler}

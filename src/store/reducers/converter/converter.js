@@ -14,7 +14,7 @@ const converter = (state = initialState, action) => {
         date: action.payload,
       });
 
-    case ActionType.LOAD_EXCHANGE_RATE:
+    case ActionType.PASTE_EXCHANGE_RATE:
       return extend(state, {
         exchangeRate: action.payload,
       });

@@ -1,14 +1,12 @@
-import {loadExchangeRate} from './actions';
+import {pasteExchangeRate} from './actions';
+import {APIValues} from "../const";
 
-const ID = `d07b14ca2bfd4e14afe52d782af853ca`;
 
-const BASE_RATE = 1;
-
-export const getExchangeRate = (date, callback = () => {}) => (dispatch, _getState, api) => (
-  api.get(`historical/${date}.json?app_id=${ID}`)
+export const loadExchangeRate = (date, callback = () => {}) => (dispatch, _getState, api) => (
+  api.get(`historical/${date}.json?app_id=${APIValues.ID}`)
     .then(({data}) => {
-      dispatch(loadExchangeRate({
-        USD: BASE_RATE,
+      dispatch(pasteExchangeRate({
+        USD: APIValues.BASE_RATE,
         RUB: data.rates.RUB,
         EUR: data.rates.EUR,
         GBP: data.rates.GBP,

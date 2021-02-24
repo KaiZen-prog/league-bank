@@ -1,17 +1,12 @@
 import {connect} from 'react-redux';
 import {addConversion, changeDate} from '../store/actions';
 import moment from 'moment';
+import React from 'react';
 import DatePicker from 'react-datepicker';
-import {getExchangeRate} from '../store/api-actions';
+import {loadExchangeRate} from '../store/api-actions';
 import '../../node_modules/react-datepicker/dist/react-datepicker.css';
-
-const FLOAT_COEFFICIENT = 10000;
-
-const CustomCalendarInput = ({value, onClick}) => (
-  <button className="converter__calendar" type="button" onClick={onClick}>
-    {value}
-  </button>
-);
+import {FormFields, Currencies, FLOAT_COEFFICIENT} from "../const";
+import Calendar from "../components/calendar";
 
 export const withConverter = (Component) => {
   class WithCurrencyConverter extends React.PureComponent {
@@ -21,11 +16,11 @@ export const withConverter = (Component) => {
       this.state = {
         exchangeRate: props.exchangeRate,
         currencyInput: {
-          type: `RUB`,
+          type: Currencies.RUB,
           amount: ``,
         },
         currencyOutput: {
-          type: `USD`,
+          type: Currencies.USD,
           amount: ``,
         },
       }
@@ -53,29 +48,44 @@ export const withConverter = (Component) => {
       const {name, value} = evt.target;
 
       if (value === this.state.currencyInput.type || value === this.state.currencyOutput.type) {
-        const type = this.state.currencyInput.type;
-        const amount = this.state.currencyInput.amount;
+        let inputAmount = this.state.currencyInput.amount;
 
-        this.setState({
-          currencyInput: {
-            type: this.state.currencyOutput.type,
-            amount: this.state.currencyOutput.amount,
-          },
-          currencyOutput: {
-            type: type,
-            amount: amount,
-          },
-        });
-        return;
+        switch (name) {
+          case FormFields.INPUT: {
+            this.setState({
+              currencyInput: {
+                type: value,
+                amount: inputAmount
+              },
+              currencyOutput: {
+                type: value,
+                amount: inputAmount
+              },
+            });
+            return;
+          }
+
+          case FormFields.OUTPUT: {
+            this.setState({
+              currencyOutput: {
+                type: value,
+                amount: this.state.currencyInput.amount
+              },
+            });
+            return;
+          }
+        }
       }
 
-      this.setState({[name]: Object.assign(
-          {},
-          this.state[name],
-          {type: value}
-          )},
+      this.setState({
+          [name]: Object.assign(
+            {},
+            this.state[name],
+            {type: value}
+          )
+        },
         () => {
-          this.valueConversion(`currencyInput`, this.state[`currencyInput`].amount);
+          this.valueConversion(FormFields.INPUT, this.state[FormFields.INPUT].amount);
         }
       );
     }
@@ -89,22 +99,22 @@ export const withConverter = (Component) => {
     }
 
     valueConversion(name, value) {
-      if (name === `currencyInput`) {
-        this.entryField = `currencyInput`;
-        this.outputField = 'currencyOutput';
+      if (name === FormFields.INPUT) {
+        this.entryField = FormFields.INPUT;
+        this.outputField = FormFields.OUTPUT;
       } else {
-        this.entryField = `currencyOutput`;
-        this.outputField = 'currencyInput';
+        this.entryField = FormFields.OUTPUT;
+        this.outputField = FormFields.INPUT;
       }
 
-      if (this.state[this.entryField].type === `USD`) {
+      if (this.state[this.entryField].type === Currencies.USD) {
         this.setState({[this.outputField]: Object.assign(
             {},
             this.state[this.outputField],
             {amount: this.USDconversion(this.outputField, value)}
           )});
         return;
-      } else if (this.state[this.outputField].type === `USD`) {
+      } else if (this.state[this.outputField].type === Currencies.USD) {
         this.setState({[this.outputField]: Object.assign(
             {},
             this.state[this.outputField],
@@ -135,9 +145,9 @@ export const withConverter = (Component) => {
       this.valueConversion(name, value);
     }
 
-    exchangeRateUpdate(date) {
+    exchangeRateUpdate() {
       this.setState({exchangeRate: this.props.exchangeRate}, () => {
-        this.props.loadExchangeRate(date, this.valueConversion(`currencyInput`, this.state[`currencyInput`].amount));
+        this.valueConversion(FormFields.INPUT, this.state[FormFields.INPUT].amount);
       })
     }
 
@@ -145,7 +155,7 @@ export const withConverter = (Component) => {
       const formatDate = moment(date).format(`YYYY-MM-DD`);
       this.props.changeDate(formatDate);
       this.props.loadExchangeRate(formatDate, () => {
-        this.exchangeRateUpdate(formatDate);
+        this.exchangeRateUpdate();
       });
     }
 
@@ -165,7 +175,7 @@ export const withConverter = (Component) => {
             maxDate={new Date()}
             onChange={date => this.dateChangeHandler(date)}
             dateFormat={`d.MM.yyyy`}
-            customInput={<CustomCalendarInput/>}
+            customInput={<Calendar/>}
           />
         </Component>
       );
@@ -187,7 +197,7 @@ export const withConverter = (Component) => {
     },
 
     loadExchangeRate(date, callback) {
-      dispatch(getExchangeRate(date, callback));
+      dispatch(loadExchangeRate(date, callback));
     }
   });
 
