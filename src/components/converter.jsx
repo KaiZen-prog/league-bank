@@ -1,10 +1,14 @@
 import React from 'react';
+import {withConverter} from '../hocs/with-converter';
 
-const Converter = () => {
+const Converter = (props) => {
+  const {children, submitHandler, typeChangeHandler, valueChangeHandler} = props;
+  const {currencyInput, currencyOutput} = props.state;
+
   return (
     <section className="converter">
       <h2 className="converter__header">Конвертер валют</h2>
-      <form method="post" action="#" className="converter__form">
+      <form method="post" action="#" className="converter__form" onSubmit={submitHandler}>
         <div className="converter__field">
           <label htmlFor="currency-input">
             <h3 className="converter__field-title">У меня есть</h3>
@@ -12,15 +16,20 @@ const Converter = () => {
           <input
             id="currency-input"
             className="converter__input"
-            name="before"
+            name="currencyInput"
             type="number"
             min="0"
-            step="1"
-            placeholder="1000"
+            placeholder="0"
+            value={currencyInput.amount}
+            onChange={valueChangeHandler}
           />
 
           <label>
-            <select name="currencyInput" value="RUB" className="converter__select">
+            <select name="currencyInput"
+                    className="converter__select"
+                    value={currencyInput.type}
+                    onChange={typeChangeHandler}
+            >
               <option value="RUB">RUB</option>
               <option value="USD">USD</option>
               <option value="EUR">EUR</option>
@@ -32,7 +41,7 @@ const Converter = () => {
         </div>
 
         <div className="converter__field">
-          <label htmlFor="currency-output">
+          <label htmlFor="currency-input">
             <h3 className="converter__field-title">Хочу приобрести</h3>
           </label>
           <input
@@ -41,12 +50,17 @@ const Converter = () => {
             name="currencyOutput"
             type="number"
             min="0"
-            step="1"
-            placeholder="13,1234"
+            placeholder="0"
+            value={currencyOutput.amount}
+            onChange={valueChangeHandler}
           />
 
           <label>
-            <select name="currencyOutput" value="USD" className="converter__select">
+            <select name="currencyOutput"
+                    className="converter__select"
+                    value={currencyOutput.type}
+                    onChange={typeChangeHandler}
+            >
               <option value="RUB">RUB</option>
               <option value="USD">USD</option>
               <option value="EUR">EUR</option>
@@ -58,9 +72,7 @@ const Converter = () => {
         </div>
 
         <div id="calendar">
-          <button className="converter__calendar" type="button">
-            1.12.2020
-          </button>
+          {children}
         </div>
 
         <button type="submit" className="converter__button">Сохранить результат</button>
@@ -71,4 +83,4 @@ const Converter = () => {
 
 Converter.displayName = `Converter`;
 
-export default Converter;
+export default withConverter(Converter);
