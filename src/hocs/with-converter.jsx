@@ -171,8 +171,8 @@ export const withConverter = (Component) => {
           valueChangeHandler={this.valueChangeHandler}>
           <DatePicker
             selected={new Date(this.props.date)}
-            minDate={new Date(moment().subtract(1, `week`))}
-            maxDate={new Date()}
+            minDate={new Date(moment().utc().subtract(1, `week`))}
+            maxDate={new Date(moment().utc().format(`YYYY-MM-DD`))}
             onChange={date => this.dateChangeHandler(date)}
             dateFormat={`d.MM.yyyy`}
             customInput={<Calendar/>}

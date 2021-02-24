@@ -3,7 +3,7 @@ import {ActionType} from "../../actions";
 import moment from "moment";
 
 const initialState = {
-  date: moment().format(`YYYY-MM-DD`),
+  date: moment().utc().format(`YYYY-MM-DD`),
   exchangeRate: ``,
 };
 
