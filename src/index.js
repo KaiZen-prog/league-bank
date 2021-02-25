@@ -15,7 +15,7 @@ const api = createAPI();
 const store = createStore(
     rootReducer,
     composeWithDevTools(
-      applyMiddleware(thunk.withExtraArgument(api))
+        applyMiddleware(thunk.withExtraArgument(api))
     )
 );
 
@@ -24,9 +24,9 @@ Promise.all([
 ])
   .then(() => {
     ReactDOM.render(
-      <Provider store={store}>
-        <App />
-      </Provider>,
-      document.getElementById('root')
+        <Provider store={store}>
+          <App />
+        </Provider>,
+        document.getElementById(`root`)
     );
   });

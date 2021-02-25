@@ -2,8 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ConversionHistoryItem from "./conversion-history-item";
 import {clearHistory} from "../store/actions";
+import PropTypes from "prop-types";
 
-const ConversionHistory = ({history, clearHistory}) => {
+const ConversionHistory = ({history, clear}) => {
   return (
     <section className="conversion-history">
       <h2 className="conversion-history__header">История конвертации</h2>
@@ -19,9 +20,23 @@ const ConversionHistory = ({history, clearHistory}) => {
           />
         ))}
       </ul>
-      <button className="conversion-history__button" onClick={clearHistory}>Очистить историю</button>
+      <button className="conversion-history__button" onClick={clear}>Очистить историю</button>
     </section>
   );
+};
+
+ConversionHistory.propTypes = {
+  history: PropTypes.arrayOf(PropTypes.shape({
+    currencyInput: PropTypes.shape({
+      amount: PropTypes.number.isRequired,
+      type: PropTypes.string.isRequired
+    }),
+    currencyOutput: PropTypes.shape({
+      amount: PropTypes.number.isRequired,
+      type: PropTypes.string.isRequired
+    }),
+  })).isRequired,
+  clear: PropTypes.func.isRequired
 };
 
 ConversionHistory.displayName = `ConversionHistory`;
@@ -31,7 +46,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  clearHistory() {
+  clear() {
     dispatch(clearHistory());
   },
 });

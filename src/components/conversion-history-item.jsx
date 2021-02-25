@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ConversionHistoryItem = ({date, inputAmount, inputCurrency, outputAmount, outputCurrency}) => {
   return (
@@ -14,6 +15,13 @@ const ConversionHistoryItem = ({date, inputAmount, inputCurrency, outputAmount, 
   );
 };
 
-ConversionHistoryItem.displayName = `ConversionHistoryItem`;
+ConversionHistoryItem.propTypes = {
+  date: PropTypes.date,
+  inputAmount: PropTypes.number.isRequired,
+  inputCurrency: PropTypes.string.isRequired,
+  outputAmount: PropTypes.number.isRequired,
+  outputCurrency: PropTypes.string.isRequired,
+};
 
+ConversionHistoryItem.displayName = `ConversionHistoryItem`;
 export default ConversionHistoryItem;

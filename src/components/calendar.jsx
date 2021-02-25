@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Calendar = ({onClick, value}) => {
   return (
@@ -10,6 +11,10 @@ const Calendar = ({onClick, value}) => {
   );
 };
 
-Calendar.displayName = `Calendar`;
+Calendar.propTypes = {
+  value: PropTypes.string,
+  onClick: PropTypes.func.isRequired
+};
 
+Calendar.displayName = `Calendar`;
 export default Calendar;

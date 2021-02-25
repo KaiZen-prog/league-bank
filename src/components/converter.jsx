@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import {withConverter} from '../hocs/with-converter';
 
 const Converter = (props) => {
@@ -81,6 +82,22 @@ const Converter = (props) => {
   );
 };
 
-Converter.displayName = `Converter`;
+Converter.propTypes = {
+  state: PropTypes.shape({
+    currencyInput: PropTypes.shape({
+      amount: PropTypes.number.isRequired,
+      type: PropTypes.string.isRequired
+    }),
+    currencyOutput: PropTypes.shape({
+      amount: PropTypes.number.isRequired,
+      type: PropTypes.string.isRequired
+    }),
+  }).isRequired,
+  children: PropTypes.element.isRequired,
+  submitHandler: PropTypes.func.isRequired,
+  typeChangeHandler: PropTypes.func.isRequired,
+  valueChangeHandler: PropTypes.func.isRequired
+};
 
+Converter.displayName = `Converter`;
 export default withConverter(Converter);

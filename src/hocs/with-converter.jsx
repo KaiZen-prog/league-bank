@@ -7,6 +7,7 @@ import {loadExchangeRate} from '../store/api-actions';
 import '../../node_modules/react-datepicker/dist/react-datepicker.css';
 import {FormFields, Currencies, FLOAT_COEFFICIENT} from "../const";
 import Calendar from "../components/calendar";
+import PropTypes from "prop-types";
 
 export const withConverter = (Component) => {
   class WithCurrencyConverter extends React.PureComponent {
@@ -23,12 +24,12 @@ export const withConverter = (Component) => {
           type: Currencies.USD,
           amount: ``,
         },
-      }
+      };
 
       this.submitHandler = this.submitHandler.bind(this);
       this.typeChangeHandler = this.typeChangeHandler.bind(this);
       this.valueConversion = this.valueConversion.bind(this);
-      this.USDconversion = this.USDconversion.bind(this);
+      this.usdConversion = this.usdConversion.bind(this);
       this.conversionToUSD = this.conversionToUSD.bind(this);
       this.valueChangeHandler = this.valueChangeHandler.bind(this);
       this.dateChangeHandler = this.dateChangeHandler.bind(this);
@@ -78,19 +79,19 @@ export const withConverter = (Component) => {
       }
 
       this.setState({
-          [name]: Object.assign(
+        [name]: Object.assign(
             {},
             this.state[name],
             {type: value}
-          )
-        },
-        () => {
-          this.valueConversion(FormFields.INPUT, this.state[FormFields.INPUT].amount);
-        }
+        )
+      },
+      () => {
+        this.valueConversion(FormFields.INPUT, this.state[FormFields.INPUT].amount);
+      }
       );
     }
 
-    USDconversion(name, value) {
+    usdConversion(name, value) {
       return Math.floor((value * this.state.exchangeRate[this.state[name].type]) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
     }
 
@@ -111,26 +112,26 @@ export const withConverter = (Component) => {
         this.setState({[this.outputField]: Object.assign(
             {},
             this.state[this.outputField],
-            {amount: this.USDconversion(this.outputField, value)}
-          )});
+            {amount: this.usdConversion(this.outputField, value)}
+        )});
         return;
       } else if (this.state[this.outputField].type === Currencies.USD) {
         this.setState({[this.outputField]: Object.assign(
             {},
             this.state[this.outputField],
             {amount: this.conversionToUSD(this.entryField, value)}
-          )});
+        )});
         return;
       }
 
       const intermediate = this.conversionToUSD(this.entryField, value);
-      const result = this.USDconversion(this.outputField, intermediate);
+      const result = this.usdConversion(this.outputField, intermediate);
 
       this.setState({[this.outputField]: Object.assign(
           {},
           this.state[this.outputField],
           {amount: result}
-        )});
+      )});
     }
 
     valueChangeHandler(evt) {
@@ -140,7 +141,7 @@ export const withConverter = (Component) => {
           {},
           this.state[name],
           {amount: Math.floor(value * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT}
-        )});
+      )});
 
       this.valueConversion(name, value);
     }
@@ -148,7 +149,7 @@ export const withConverter = (Component) => {
     exchangeRateUpdate() {
       this.setState({exchangeRate: this.props.exchangeRate}, () => {
         this.valueConversion(FormFields.INPUT, this.state[FormFields.INPUT].amount);
-      })
+      });
     }
 
     dateChangeHandler(date) {
@@ -173,7 +174,7 @@ export const withConverter = (Component) => {
             selected={new Date(this.props.date)}
             minDate={new Date(moment().utc().subtract(1, `week`))}
             maxDate={new Date(moment().utc().format(`YYYY-MM-DD`))}
-            onChange={date => this.dateChangeHandler(date)}
+            onChange={(date) => this.dateChangeHandler(date)}
             dateFormat={`d.MM.yyyy`}
             customInput={<Calendar/>}
           />
@@ -181,6 +182,20 @@ export const withConverter = (Component) => {
       );
     }
   }
+
+  WithCurrencyConverter.propTypes = {
+    date: PropTypes.date,
+    exchangeRate: PropTypes.shape({
+      USD: PropTypes.string.isRequired,
+      RUB: PropTypes.string.isRequired,
+      EUR: PropTypes.string.isRequired,
+      GBP: PropTypes.string.isRequired,
+      CNY: PropTypes.string.isRequired
+    }).isRequired,
+    addTransaction: PropTypes.func.isRequired,
+    changeDate: PropTypes.func.isRequired,
+    loadExchangeRate: PropTypes.func.isRequired
+  };
 
   const mapStateToProps = (state) => ({
     date: state.CONVERTER.date,
@@ -202,4 +217,4 @@ export const withConverter = (Component) => {
   });
 
   return connect(mapStateToProps, mapDispatchToProps)(WithCurrencyConverter);
-}
+};

@@ -11,9 +11,9 @@ export const loadExchangeRate = (date, callback = () => {}) => (dispatch, _getSt
         EUR: data.rates.EUR,
         GBP: data.rates.GBP,
         CNY: data.rates.CNY,
-      }))
+      }));
     })
     .then(() => {
-      callback()
+      callback();
     })
 );
