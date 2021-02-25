@@ -1,4 +1,4 @@
-import {pasteExchangeRate} from './actions';
+import {pasteExchangeRate} from "./actions";
 import {APIValues} from "../const";
 
 

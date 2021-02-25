@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 const BASE_URL = `https://openexchangerates.org/api/`;
 const REQUEST_TIMEOUT = 5000;

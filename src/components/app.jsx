@@ -1,13 +1,19 @@
-import React from 'react';
-import Header from './header';
-import Main from './main';
+import React from "react";
+import Header from "./header";
+import Promo from "./promo";
+import Converter from "./converter";
+import ConversionHistory from "./conversion-history";
 import Footer from "./footer";
 
 const App = () => {
   return (
     <>
       <Header/>
-      <Main/>
+      <main>
+        <Promo/>
+        <Converter/>
+        <ConversionHistory/>
+      </main>
       <Footer/>
     </>
   );

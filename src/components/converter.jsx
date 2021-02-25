@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import PropTypes from "prop-types";
-import {withConverter} from '../hocs/with-converter';
+import {withConverter} from "../hocs/with-converter";
 
 const Converter = (props) => {
   const {children, submitHandler, typeChangeHandler, valueChangeHandler} = props;

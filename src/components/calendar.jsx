@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 const Calendar = ({onClick, value}) => {
   return (
@@ -12,7 +12,7 @@ const Calendar = ({onClick, value}) => {
 };
 
 Calendar.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired
 };
 

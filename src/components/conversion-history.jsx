@@ -1,5 +1,5 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React from "react";
+import {connect} from "react-redux";
 import ConversionHistoryItem from "./conversion-history-item";
 import {clearHistory} from "../store/actions";
 import PropTypes from "prop-types";

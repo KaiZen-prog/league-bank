@@ -1,10 +1,10 @@
-import {connect} from 'react-redux';
-import {addConversion, changeDate} from '../store/actions';
-import moment from 'moment';
-import React from 'react';
-import DatePicker from 'react-datepicker';
-import {loadExchangeRate} from '../store/api-actions';
-import '../../node_modules/react-datepicker/dist/react-datepicker.css';
+import {connect} from "react-redux";
+import {addConversion, changeDate} from "../store/actions";
+import moment from "moment";
+import React from "react";
+import DatePicker from "react-datepicker";
+import {loadExchangeRate} from "../store/api-actions";
+import "../../node_modules/react-datepicker/dist/react-datepicker.css";
 import {FormFields, Currencies, FLOAT_COEFFICIENT} from "../const";
 import Calendar from "../components/calendar";
 import PropTypes from "prop-types";
@@ -29,7 +29,7 @@ export const withConverter = (Component) => {
       this.submitHandler = this.submitHandler.bind(this);
       this.typeChangeHandler = this.typeChangeHandler.bind(this);
       this.valueConversion = this.valueConversion.bind(this);
-      this.usdConversion = this.usdConversion.bind(this);
+      this.ConversionFromUSD = this.ConversionFromUSD.bind(this);
       this.conversionToUSD = this.conversionToUSD.bind(this);
       this.valueChangeHandler = this.valueChangeHandler.bind(this);
       this.dateChangeHandler = this.dateChangeHandler.bind(this);
@@ -86,17 +86,17 @@ export const withConverter = (Component) => {
         )
       },
       () => {
-        this.valueConversion(FormFields.INPUT, this.state[FormFields.INPUT].amount);
+        this.valueConversion(FormFields.INPUT, this.state.currencyInput.amount);
       }
       );
     }
 
-    usdConversion(name, value) {
-      return Math.floor((value * this.state.exchangeRate[this.state[name].type]) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
-    }
-
     conversionToUSD(name, value) {
       return Math.floor((value / this.state.exchangeRate[this.state[name].type]) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
+    }
+
+    ConversionFromUSD(name, value) {
+      return Math.floor((value * this.state.exchangeRate[this.state[name].type]) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
     }
 
     valueConversion(name, value) {
@@ -108,24 +108,8 @@ export const withConverter = (Component) => {
         this.outputField = FormFields.INPUT;
       }
 
-      if (this.state[this.entryField].type === Currencies.USD) {
-        this.setState({[this.outputField]: Object.assign(
-            {},
-            this.state[this.outputField],
-            {amount: this.usdConversion(this.outputField, value)}
-        )});
-        return;
-      } else if (this.state[this.outputField].type === Currencies.USD) {
-        this.setState({[this.outputField]: Object.assign(
-            {},
-            this.state[this.outputField],
-            {amount: this.conversionToUSD(this.entryField, value)}
-        )});
-        return;
-      }
-
       const intermediate = this.conversionToUSD(this.entryField, value);
-      const result = this.usdConversion(this.outputField, intermediate);
+      const result = this.ConversionFromUSD(this.outputField, intermediate);
 
       this.setState({[this.outputField]: Object.assign(
           {},
