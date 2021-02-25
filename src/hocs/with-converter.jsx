@@ -29,7 +29,7 @@ export const withConverter = (Component) => {
       this.submitHandler = this.submitHandler.bind(this);
       this.typeChangeHandler = this.typeChangeHandler.bind(this);
       this.valueConversion = this.valueConversion.bind(this);
-      this.ConversionFromUSD = this.ConversionFromUSD.bind(this);
+      this.conversionFromUSD = this.conversionFromUSD.bind(this);
       this.conversionToUSD = this.conversionToUSD.bind(this);
       this.valueChangeHandler = this.valueChangeHandler.bind(this);
       this.dateChangeHandler = this.dateChangeHandler.bind(this);
@@ -95,7 +95,7 @@ export const withConverter = (Component) => {
       return Math.floor((value / this.state.exchangeRate[this.state[name].type]) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
     }
 
-    ConversionFromUSD(name, value) {
+    conversionFromUSD(name, value) {
       return Math.floor((value * this.state.exchangeRate[this.state[name].type]) * FLOAT_COEFFICIENT) / FLOAT_COEFFICIENT;
     }
 
@@ -108,8 +108,8 @@ export const withConverter = (Component) => {
         this.outputField = FormFields.INPUT;
       }
 
-      const intermediate = this.conversionToUSD(this.entryField, value);
-      const result = this.ConversionFromUSD(this.outputField, intermediate);
+      const convertedToUSD = this.conversionToUSD(this.entryField, value);
+      const result = this.conversionFromUSD(this.outputField, convertedToUSD);
 
       this.setState({[this.outputField]: Object.assign(
           {},
