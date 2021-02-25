@@ -42,6 +42,8 @@
 
 .footer__address {
   @include footer-text-grey;
+
+  margin: 0;
 }
 
 .footer__nav {
@@ -121,6 +123,8 @@
 
 .footer__phone-info {
   @include footer-text-grey;
+
+  margin: 0;
 }
 
 .footer__socials-list {
